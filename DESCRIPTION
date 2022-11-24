@@ -1,12 +1,14 @@
 Package: opana
-Title: What the Package Does (One Line, Title Case)
+Title: opana OpenPose data analysis package
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Kohei", "Uno", , "koheiuno@met.nagoya-u.ac.jp", role=c("aut", "cre"),
+    comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: opana provides functions for analyzing OpenPose data 
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
+Depends: R (>= 3.0.0), utils, registry
+Imports: stringr, jsonlite, imputeTS, zoo, rCAT, ggplot2, ggsci, reshape2, spdep
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
