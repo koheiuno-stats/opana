@@ -5,9 +5,8 @@ Authors@R:
     person("Kohei", "Uno", , "koheiuno@met.nagoya-u.ac.jp", role=c("aut", "cre"),
     comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: opana provides functions for analyzing OpenPose data 
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
-Depends: R (>= 3.0.0), utils, registry
+License: MIT + file LICENSE
+Depends: R (>= 3.0.0), utils
 Imports: stringr, jsonlite, imputeTS, zoo, rCAT, ggplot2, ggsci, reshape2, spdep
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
