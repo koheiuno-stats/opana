@@ -2,7 +2,9 @@
 #'
 #' @description Left or Right detection from coordinates matrix data.
 #'
-#' @param mat a coordinates matrix (time t). 
+#' @param mat a coordinates matrix (time t).
+#'
+#' @export
 
 LR_detect <- function(mat){
     Lscore = mat[c("LShoulder","LElbow","LWrist","LHip","LKnee","LAnkle","LEye","LEar","LBigToe","LSmallToe","LSmallToe","LHeel"),3]

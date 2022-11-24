@@ -5,6 +5,8 @@
 #' @param y y is a coordinate time series.
 #' @param w w is tuning parameter.
 #' @param span span is tuning parameter.
+#'
+#' @export
 
 peak_det <- function(y, w=1,span=0.05){
   n = length(y)

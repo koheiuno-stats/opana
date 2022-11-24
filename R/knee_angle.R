@@ -4,6 +4,7 @@
 #'
 #' @param data_array data array.
 #'
+#' @export
 
 knee_angle <- function(data_array){
     K2H = K2A = rep(0,2)

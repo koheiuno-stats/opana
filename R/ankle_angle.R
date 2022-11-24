@@ -4,7 +4,8 @@
 #'
 #' @param data_array data array.
 #' @param stand bool.
-#' 
+#'
+#' @export
 
 ankle_angle <- function(data_array, stand=TRUE){
     LA_angles = RA_angles = matrix(0, nrow=dim(data_array)[1], ncol=1)    

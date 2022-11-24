@@ -4,6 +4,7 @@
 #' 
 #' @param data_array data array.
 #' @param maxtime maxtime.
+#' @export
 
 epoch <- function(data_array, maxtime){
     joint_label = dimnames(data_array)[[2]]    

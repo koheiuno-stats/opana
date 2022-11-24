@@ -7,7 +7,7 @@
 #' @param thr threshold.
 #' @param type type "linear" or "spline".
 #' 
-#' 
+#' @export
 switching <- function(epoch_list, lag=1, thr=0.3, type="linear"){
     joints = c("RKnee", "RAnkle", "LKnee", "LAnkle", "LBigToe", "LSmallToe", "LHeel", "RBigToe", "RSmallToe", "RHeel")
     for(i in seq_along(epoch_list)){

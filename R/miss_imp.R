@@ -7,6 +7,9 @@
 #' @param lag lag.
 #' @param percentile percentile.
 #' @param type "linear" or "spline".
+#'
+#' @export
+
 
 miss_imp <- function(data_array, thr=0, lag=5, percentile=95, type="linear"){
     data_array = NA_score(data_array, thr=thr)

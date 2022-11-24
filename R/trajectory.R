@@ -5,6 +5,8 @@
 #' @param Data Data.
 #' @param joint_name joint name.
 #' @param file_name file name.
+#'
+#' @export
 
 trajectory <- function(Data, joint_name=NULL, file_name=NULL){
     if(is.list(Data)){

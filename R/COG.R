@@ -3,6 +3,8 @@
 #' @description COG estimate by legs coordinates.
 #' 
 #' @param data_array data array. 
+#'
+#' @export
 #' 
 COG <- function(data_array){
     n = dim(data_array)[1]

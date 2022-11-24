@@ -7,6 +7,7 @@
 #' @param file_name file name.
 #' @param joint_name joint name. 
 #' @param xyplot xy plot.
+#' @export
 
 epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, xyplot="xy"){
     X_list = Y_list = list()

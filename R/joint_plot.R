@@ -6,7 +6,7 @@
 #' @param file_name plot title.
 #' @param joiint_name a joint name/
 #' @param xyplot plot xy-coord x-coord, y-coord.
-#'
+#' @export
 joint_plot <- function(data_array, file_name=NULL, joint_name=NULL, xyplot="xy"){
     if(xyplot=="xy"){
         x = data_array[,joint_name,"X"]

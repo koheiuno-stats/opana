@@ -5,6 +5,8 @@
 #' @param data_array data array.
 #' @param lag lag parameter (used in diff()).
 #' @param percentile percentile.
+#'
+#' @export
 
 NA_diff <- function(data_array, lag=5, percentile= 95){
     for(j in 1:(dim(data_array)[2])){

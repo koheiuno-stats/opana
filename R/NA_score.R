@@ -4,6 +4,8 @@
 #'
 #' @param data_array data array.
 #' @param thr threshold.
+#'
+#' @export
 
 NA_score <- function(data_array, thr=0){
     for(j in 1:(dim(data_array)[2])){

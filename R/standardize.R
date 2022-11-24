@@ -3,6 +3,8 @@
 #' @description standardize() can standardize data array.
 #' 
 #' @param data_array data array.
+#'
+#' @export
 
 standardize <- function(data_array){
     for(i in 1:(dim(data_array)[1])){

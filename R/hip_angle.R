@@ -4,6 +4,7 @@
 #'
 #' @param data_array data array.
 #' @param stand bool.
+#' @export
 #' 
 hip_angle <- function(data_array, stand=TRUE){
     H2floor = H2K = c(0,2)

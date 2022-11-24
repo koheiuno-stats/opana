@@ -3,6 +3,8 @@
 #' @description unepoch() can convert epoch list to data array. 
 #'
 #' @param epoch_list epoch list.
+#'
+#' @export
 
 unepoch <- function(epoch_list){
     n_list = lapply(epoch_list, function(x){dim(x)[1]})

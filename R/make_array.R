@@ -5,7 +5,7 @@
 #' @param filespath a directory path containing OpenPose JSON files.
 #' @param thr a threshold for OpenPose score data.
 #'
-#' 
+#' @export
 
 
 make_array <- function(filespath = NULL, thr = 0){
