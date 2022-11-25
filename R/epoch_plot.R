@@ -9,7 +9,7 @@
 #' @param xyplot xy plot.
 #' @export
 
-epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, xyplot="xy"){
+epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, xyplot="x"){
     X_list = Y_list = list()
     Time = numeric(0)
     Cycle = character(0)
