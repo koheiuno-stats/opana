@@ -7,7 +7,7 @@ Authors@R:
 Description: opana provides functions for analyzing OpenPose data 
 License: MIT + file LICENSE
 Depends: R (>= 3.0.0), utils
-Imports: stringr, jsonlite, zoo, rCAT, ggplot2, ggsci, reshape2, spdep
+Imports: stringr, jsonlite, zoo, rCAT, ggplot2, ggsci, reshape2, spdep, units, sf
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1
