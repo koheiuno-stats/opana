@@ -26,15 +26,15 @@ trajectory <- function(Data, joint_name=NULL, file_name=NULL){
         Cycle = factor(Cycle, levels = as.character(seq_along(Data)))
 
         df = data.frame(x=X, y=Y, time=Time, cycle=Cycle)
-        gg = ggplot(df, aes(x=x, y=y, color=cycle)) + geom_line()
-        gg = gg + ggtitle(file_name)
+        gg = ggplot2::ggplot(df, aes(x=x, y=y, color=cycle)) + ggplot2::geom_line()
+        gg = gg + ggplot2::ggtitle(file_name)
     }else{
         
         x = Data[, joint_name, "X"]
         y = Data[, joint_name, "Y"]
         df = data.frame(x=x, y=y, time=1:dim(Data)[1])
-        gg = ggplot(df, aes(x=x, y=y, color=time)) + geom_line() + scale_color_gradient(low="#00A0E9", high="#E60012")
-        gg = gg + ggtitle(file_name)
+        gg = ggplot2::ggplot(df, aes(x=x, y=y, color=time)) + ggplot2::geom_line() + ggplot2::scale_color_gradient(low="#00A0E9", high="#E60012")
+        gg = gg + ggplot2::ggtitle(file_name)
     }
     return(gg)
 }

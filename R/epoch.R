@@ -21,7 +21,7 @@ epoch <- function(data_array, maxtime){
         for(k in 1:dim(epoch_list[[j]])[2]){
             for(m in 1:2){
                 if(sum(is.na(epoch_list[[j]][ , k, m])) > ns[j]*0.5){next}
-                apf = approxfun(x=1:ns[j], y=epoch_list[[j]][ , k, m])                
+                apf = stats::approxfun(x=1:ns[j], y=epoch_list[[j]][ , k, m])                
                 data_array[, k, m] = apf(seq(from=1, to=ns[j], by=(ns[j]-1)/maxtime))
             }
         }
