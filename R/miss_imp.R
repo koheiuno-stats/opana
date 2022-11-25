@@ -10,7 +10,7 @@
 #' @export
 
 
-miss_imp <- function(data_array, thr=0, lag=5, percentile=95)
+miss_imp <- function(data_array, thr=0, lag=5, percentile=95){
     data_array = NA_score(data_array, thr=thr)
     data_array = NA_diff(data_array, lag=lag, percentile)
 
