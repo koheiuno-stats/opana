@@ -31,7 +31,7 @@ epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, x
         df = reshape2::melt(df)
         df = cbind(Time, Cycle, df)
         colnames(df) = c("time", "cycle", "axis", "coord")
-        gg = ggplot2::ggplot(df, aes(x=time, y=coord, color=cycle)) + ggplot2::geom_line(aes(color=cycle))
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=coord, color=cycle)) + ggplot2::geom_line(aes(color=cycle))
         gg = gg + ggplot2::ggtitle(paste(file_name,"x",sep="_"))
     }
     if(xyplot=="y"){
@@ -39,7 +39,7 @@ epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, x
         df = reshape2::melt(df)
         df = cbind(Time, Cycle, df)
         colnames(df) = c("time", "cycle", "axis", "coord")
-        gg = ggplot2::ggplot(df, aes(x=time, y=coord, color=cycle)) + ggplot2::geom_line(aes(color=cycle))
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=coord, color=cycle)) + ggplot2::geom_line(aes(color=cycle))
         gg = gg + ggplot2::ggtitle(paste(file_name,"y",sep="_"))
     }
     return(gg)

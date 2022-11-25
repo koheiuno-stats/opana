@@ -24,7 +24,7 @@ joint_plot <- function(data_array, file_name=NULL, joint_name=NULL, xyplot="xy")
     df = reshape2::melt(df)
     df = cbind(df, rep(1:length(x),ncol(df)-1))
     colnames(df) = c("axis", "value", "time")
-    gg = ggplot2::ggplot(df, aes(x=time, y=value, color=axis)) + ggplot2::geom_line() + ggsci::scale_color_nejm()
+    gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=value, color=axis)) + ggplot2::geom_line() + ggsci::scale_color_nejm()
     gg = gg + ggplot2::ggtitle(file_name)
     return(gg)
 }
