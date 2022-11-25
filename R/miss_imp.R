@@ -6,12 +6,11 @@
 #' @param thr threshold.
 #' @param lag lag.
 #' @param percentile percentile.
-#' @param type "linear" or "spline".
 #'
 #' @export
 
 
-miss_imp <- function(data_array, thr=0, lag=5, percentile=95, type="linear"){
+miss_imp <- function(data_array, thr=0, lag=5, percentile=95)
     data_array = NA_score(data_array, thr=thr)
     data_array = NA_diff(data_array, lag=lag, percentile)
 
@@ -20,23 +19,13 @@ miss_imp <- function(data_array, thr=0, lag=5, percentile=95, type="linear"){
             data_array[,j,"X"] = NA            
             next
         }
-        if(type=="linear"){
-            data_array[,j,"X"] = imputeTS::na_interpolation(data_array[,j,"X"])
-        }
-        if(type=="spline"){
-            data_array[,j,"X"] = imputeTS::na_interpolation(data_array[,j,"X"], option = "spline")
-        }
+        data_array[,j,"X"] = zoo::na.approx(data_array[,j,"X"])
         
         if(sum(is.na(data_array[,j,"Y"])) > ((dim(data_array)[1])*0.8)){
             data_array[,j,"Y"] = NA            
             next
         }
-        if(type=="linear"){
-            data_array[,j,"Y"] = imputeTS::na_interpolation(data_array[,j,"Y"])
-        }
-        if(type=="spline"){
-            data_array[,j,"Y"] = imputeTS::na_interpolation(data_array[,j,"Y"],option = "spline")
-        }        
+        data_array[,j,"Y"] = zoo::na.approx(data_array[,j,"Y"])
     }
     return(data_array)
 }
