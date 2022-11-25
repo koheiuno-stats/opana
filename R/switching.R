@@ -19,8 +19,8 @@ switching <- function(epoch_list, lag=1, thr=0.3){
             
             epoch_list[[i]][union(x_d, y_d), joints[j], ] = NA
 
-            epoch_list[[i]][, joints[j], "X"] = zoo::na.approx(epoch_list[[i]][, joints[j], "X"])
-            epoch_list[[i]][, joints[j], "Y"] = zoo::na.approx(epoch_list[[i]][, joints[j], "Y"])
+            epoch_list[[i]][, joints[j], "X"] = zoo::na.approx(epoch_list[[i]][, joints[j], "X"], na.rm=FALSE)
+            epoch_list[[i]][, joints[j], "Y"] = zoo::na.approx(epoch_list[[i]][, joints[j], "Y"], na.rm=FALSE)
         }
     }
     return(epoch_list)

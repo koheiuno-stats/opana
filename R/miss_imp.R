@@ -19,13 +19,12 @@ miss_imp <- function(data_array, thr=0, lag=5, percentile=95){
             data_array[,j,"X"] = NA            
             next
         }
-        data_array[,j,"X"] = zoo::na.approx(data_array[,j,"X"])
-        
+        data_array[,j,"X"] = zoo::na.approx(data_array[,j,"X"], na.rm=FALSE)
         if(sum(is.na(data_array[,j,"Y"])) > ((dim(data_array)[1])*0.8)){
             data_array[,j,"Y"] = NA            
             next
         }
-        data_array[,j,"Y"] = zoo::na.approx(data_array[,j,"Y"])
+        data_array[,j,"Y"] = zoo::na.approx(data_array[,j,"Y"], na.rm=FALSE)
     }
     return(data_array)
 }
