@@ -5,10 +5,9 @@
 #' @param data_array data array or data_list (it is obtained from function make_array()).
 #' @param sagittal left or right.
 #' @param LR left or right.
-#' @param file_name file name. 
 #' @param angle_name angle name.
 #' @export
-angle_plot <- function(Data, sagittal="left", LR="left", file_name=NULL, angle_name=NULL){
+angle_plot <- function(Data, sagittal="left", LR="left", angle_name=NULL){
     if(is.list(Data)){
         A_list = list()
         Time = numeric(0)
@@ -50,7 +49,6 @@ angle_plot <- function(Data, sagittal="left", LR="left", file_name=NULL, angle_n
         df = cbind(Time, Cycle, df)
         colnames(df) = c("time", "cycle", "axis", "angle")
         gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=angle, color=cycle)) + ggplot2::geom_line(ggplot2::aes(color=cycle))
-        gg = gg + ggplot2::ggtitle(paste(angle_name,"Angle", sep="_"))
     }else{
         if(angle_name=="Hip"){
             if(LR=="left"){
@@ -81,7 +79,7 @@ angle_plot <- function(Data, sagittal="left", LR="left", file_name=NULL, angle_n
         df = cbind(df, rep(1:nrow(df),ncol(df)-1))
         colnames(df) = c("axis", "angle", "time")
         gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=angle)) + ggplot2::geom_line()
-        gg = gg + ggplot2::ggtitle(file_name)
     }
+    gg = gg + ggplot2::ggtitle(paste(angle_name,"Angle", sep="_"))    
     return(gg)
 }
