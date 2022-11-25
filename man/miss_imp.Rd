@@ -4,7 +4,7 @@
 \alias{miss_imp}
 \title{miss_imp}
 \usage{
-miss_imp(data_array, thr = 0, lag = 5, percentile = 95, type = "linear")
+miss_imp(data_array, thr = 0, lag = 5, percentile = 95)
 }
 \arguments{
 \item{data_array}{data array.}
@@ -14,8 +14,6 @@ miss_imp(data_array, thr = 0, lag = 5, percentile = 95, type = "linear")
 \item{lag}{lag.}
 
 \item{percentile}{percentile.}
-
-\item{type}{"linear" or "spline".}
 }
 \description{
 miss_imp() can impute missing data.

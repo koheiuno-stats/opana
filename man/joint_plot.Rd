@@ -11,9 +11,9 @@ joint_plot(data_array, file_name = NULL, joint_name = NULL, xyplot = "xy")
 
 \item{file_name}{plot title.}
 
-\item{xyplot}{plot xy-coord x-coord, y-coord.}
+\item{joint_name}{a joint name/}
 
-\item{joiint_name}{a joint name/}
+\item{xyplot}{plot xy-coord x-coord, y-coord.}
 }
 \description{
 plotting xy-coordinates of a joint.

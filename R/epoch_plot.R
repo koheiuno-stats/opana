@@ -19,7 +19,6 @@ epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, x
         Y_list[[i]] = epoch_list[[i]][ ,joint_name, "Y", drop=FALSE]
         Time = rbind(Time, matrix(0:(n-1), ncol=1))
         Cycle = rbind(Cycle, matrix(rep(i, n), ncol=1))
-
     }
     X = unlist(lapply(X_list,rbind))
     Y = unlist(lapply(Y_list,rbind))

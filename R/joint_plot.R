@@ -4,7 +4,7 @@
 #'
 #' @param data_array data array (it is obtained from function make_array()).
 #' @param file_name plot title.
-#' @param joiint_name a joint name/
+#' @param joint_name a joint name/
 #' @param xyplot plot xy-coord x-coord, y-coord.
 #' @export
 joint_plot <- function(data_array, file_name=NULL, joint_name=NULL, xyplot="xy"){
@@ -22,7 +22,7 @@ joint_plot <- function(data_array, file_name=NULL, joint_name=NULL, xyplot="xy")
         df = data.frame(y=y)
     }    
     df = reshape2::melt(df)
-    df = cbind(df, rep(1:length(x),ncol(df)-1))
+    df = cbind(df, rep(1:nrow(df),ncol(df)-1))
     colnames(df) = c("axis", "value", "time")
     gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=value, color=axis)) + ggplot2::geom_line() + ggsci::scale_color_nejm()
     gg = gg + ggplot2::ggtitle(file_name)

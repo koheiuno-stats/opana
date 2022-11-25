@@ -4,7 +4,7 @@
 \alias{switching}
 \title{switching}
 \usage{
-switching(epoch_list, lag = 1, thr = 0.3, type = "linear")
+switching(epoch_list, lag = 1, thr = 0.3)
 }
 \arguments{
 \item{epoch_list}{epoch list.}
@@ -12,8 +12,6 @@ switching(epoch_list, lag = 1, thr = 0.3, type = "linear")
 \item{lag}{lag.}
 
 \item{thr}{threshold.}
-
-\item{type}{type "linear" or "spline".}
 }
 \description{
 switching() can detect NA and impute them.

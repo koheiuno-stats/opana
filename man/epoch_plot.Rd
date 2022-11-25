@@ -9,7 +9,7 @@ epoch_plot(
   Left = TRUE,
   file_name = NULL,
   joint_name = NULL,
-  xyplot = "xy"
+  xyplot = "x"
 )
 }
 \arguments{
