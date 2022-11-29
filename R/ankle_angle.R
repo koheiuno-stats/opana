@@ -14,16 +14,16 @@ ankle_angle <- function(data_array, stand=TRUE){
         m = matrix(c(data_array[t, "LKnee", 1:2], data_array[t, "LAnkle", 1:2]),2,2, byrow = TRUE)
         if(LR_detect(data_array[t, ,])=="Left"){
             if(stand==TRUE){
-                v1 = spdep::Rotation(m, 90*pi/180)
+##                v1 = spdep::Rotation(m, 90*pi/180)
             }else{
-                v1 = spdep::Rotation(m, -90*pi/180)
+##                v1 = spdep::Rotation(m, -90*pi/180)
             }
         }
         if(LR_detect(data_array[t, ,])=="Right"){
             if(stand==TRUE){
-                v1 = spdep::Rotation(m, -90*pi/180)
+##                v1 = spdep::Rotation(m, -90*pi/180)
             }else{
-                v1 = spdep::Rotation(m, 90*pi/180)
+##                v1 = spdep::Rotation(m, 90*pi/180)
             }
         }
         H90 = v1[1,] - v1[2,]
@@ -47,16 +47,16 @@ ankle_angle <- function(data_array, stand=TRUE){
         m = matrix(c(data_array[t, "RKnee", 1:2], data_array[t, "RAnkle", 1:2]),2,2, byrow = TRUE)
         if(LR_detect(data_array[t, ,])=="Left"){
             if(stand==TRUE){
-                v1 = spdep::Rotation(m, 90*pi/180)
+##                v1 = spdep::Rotation(m, 90*pi/180)
             }else{
-                v1 = spdep::Rotation(m, -90*pi/180)
+##                v1 = spdep::Rotation(m, -90*pi/180)
             }
         }
         if(LR_detect(data_array[t, ,])=="Right"){
             if(stand==TRUE){
-                v1 = spdep::Rotation(m, -90*pi/180)
+##                v1 = spdep::Rotation(m, -90*pi/180)
             }else{
-                v1 = spdep::Rotation(m, 90*pi/180)
+##                v1 = spdep::Rotation(m, 90*pi/180)
             }
         }
         H90 = v1[1,] - v1[2,]
