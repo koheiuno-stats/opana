@@ -4,20 +4,12 @@
 \alias{angle_plot}
 \title{plot for joint's angles}
 \usage{
-angle_plot(
-  Data,
-  sagittal = "left",
-  LR = "left",
-  file_name = NULL,
-  angle_name = NULL
-)
+angle_plot(Data, sagittal = "left", LR = "left", angle_name = NULL)
 }
 \arguments{
 \item{sagittal}{left or right.}
 
 \item{LR}{left or right.}
-
-\item{file_name}{file name.}
 
 \item{angle_name}{angle name.}
 

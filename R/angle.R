@@ -8,5 +8,6 @@
 
 angle <- function(M,N){
     acs = acos(sum(M*N) / (sqrt(sum(M*M))*sqrt(sum(N*N))))
-    return(rCAT::rad2deg(acs))
+    deg = acs*(180/pi)
+    return(deg)
 }
