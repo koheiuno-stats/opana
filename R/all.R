@@ -1,4 +1,4 @@
-COG <- function(data_array){
+COG = function(data_array){
     n = dim(data_array)[1]
     cog = matrix(0,n,2)
     for(i in 1:n){
@@ -9,7 +9,7 @@ COG <- function(data_array){
     return(cog)
 }
 
-LR_detect <- function(mat){
+LR_detect = function(mat){
     Lscore = mat[c("LShoulder","LElbow","LWrist","LHip","LKnee","LAnkle","LEye","LEar","LBigToe","LSmallToe","LSmallToe","LHeel"),3]
     Rscore = mat[c("RShoulder","RElbow","RWrist","RHip","RKnee","RAnkle","REye","REar","RBigToe","RSmallToe","RSmallToe","RHeel"),3]
 
@@ -21,7 +21,7 @@ LR_detect <- function(mat){
     return(LR)
 }
 
-NA_diff <- function(data_array, lag=5, percentile= 95){
+NA_diff = function(data_array, lag=5, percentile= 95){
     for(j in 1:(dim(data_array)[2])){
         x_Diff = abs(mean(diff(data_array[,j,1], lag=lag), na.rm = TRUE))
         x_Z = (x_Diff - mean(x_Diff, na.rm = TRUE))/sd(x_Diff, na.rm = TRUE)
@@ -36,7 +36,7 @@ NA_diff <- function(data_array, lag=5, percentile= 95){
     return(data_array)
 }
 
-NA_score <- function(data_array, thr=0){
+NA_score = function(data_array, thr=0){
     for(j in 1:(dim(data_array)[2])){
         score_thr = data_array[, j, "score"] <= thr
         data_array[score_thr, j, 1:2] = NA
@@ -44,13 +44,13 @@ NA_score <- function(data_array, thr=0){
     return(data_array)
 }
 
-angle <- function(M,N){
+angle = function(M,N){
     acs = acos(sum(M*N) / (sqrt(sum(M*M))*sqrt(sum(N*N))))
     deg = acs*(180/pi)
     return(deg)
 }
 
-angle_plot <- function(Data, sagittal="left", LR="left", angle_name=NULL){
+angle_plot = function(Data, sagittal="left", LR="left", angle_name=NULL){
     if(is.list(Data)){
         A_list = list()
         Time = numeric(0)
@@ -128,7 +128,7 @@ angle_plot <- function(Data, sagittal="left", LR="left", angle_name=NULL){
 }
 
 
-epoch <- function(data_array, maxtime){
+epoch = function(data_array, maxtime){
     joint_label = dimnames(data_array)[[2]]    
     signal = -data_array[, "LBigToe", "X"]
     event = peak_det(signal, w=5, span=0.02)
@@ -153,7 +153,7 @@ epoch <- function(data_array, maxtime){
     list(epoch=epoch_list, normalize=normalize_list)
 }
 
-epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, xyplot="x"){
+epoch_plot = function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, xyplot="x"){
     X_list = Y_list = list()
     Time = numeric(0)
     Cycle = character(0)
@@ -188,7 +188,7 @@ epoch_plot <- function(epoch_list, Left=TRUE, file_name=NULL, joint_name=NULL, x
     return(gg)
 }
 
-hip_angle <- function(data_array, stand=TRUE){
+hip_angle = function(data_array, stand=TRUE){
     H2floor = H2K = c(0,2)
     LH_angles = RH_angles = matrix(0,nrow=dim(data_array)[1],ncol=1)
     for(t in 1:(dim(data_array)[1])){
@@ -221,7 +221,7 @@ hip_angle <- function(data_array, stand=TRUE){
     list(Left=LH_angles ,Right=RH_angles)
 }
 
-joint_plot <- function(data_array, file_name=NULL, joint_name=NULL, xyplot="xy"){
+joint_plot = function(data_array, file_name=NULL, joint_name=NULL, xyplot="xy"){
     if(xyplot=="xy"){
         x = data_array[,joint_name,"X"]
         n = length(x)
@@ -246,7 +246,7 @@ joint_plot <- function(data_array, file_name=NULL, joint_name=NULL, xyplot="xy")
     return(gg)
 }
 
-knee_angle <- function(data_array){
+knee_angle = function(data_array){
     K2H = K2A = rep(0,2)
     LK_angles = RK_angles = matrix(0, nrow=dim(data_array)[1], ncol=1)
     for(t in 1:(dim(data_array)[1])){
@@ -261,7 +261,7 @@ knee_angle <- function(data_array){
     list(Left=LK_angles, Right=RK_angles)
 }
 
-make_array <- function(filespath = NULL, thr = 0){
+make_array = function(filespath = NULL, thr = 0){
     Lists = list.files(filespath, full.names = TRUE)
     id_check = rep(0, length(Lists))
     for(i in seq_along(Lists)){
@@ -297,7 +297,7 @@ make_array <- function(filespath = NULL, thr = 0){
 }
 
 
-miss_imp <- function(data_array, thr=0, lag=5, percentile=95){
+miss_imp = function(data_array, thr=0, lag=5, percentile=95){
     data_array = NA_score(data_array, thr=thr)
     data_array = NA_diff(data_array, lag=lag, percentile)
 
@@ -317,18 +317,18 @@ miss_imp <- function(data_array, thr=0, lag=5, percentile=95){
 }
 
 
-peak_det <- function(y, w=1,span=0.05){
+peak_det = function(y, w=1,span=0.05){
   n = length(y)
   x = seq_along(y)
-  y.smooth <- stats::loess(y ~ x, span=span)$fitted
-  y.max <- zoo::rollapply(y.smooth, 2*w+1, max, align="center")
-  delta <- y.max - y.smooth[-c(1:w, n+1-1:w)]
-  i.max <- which(delta <= 0) + w
+  y.smooth = stats::loess(y ~ x, span=span)$fitted
+  y.max = zoo::rollapply(y.smooth, 2*w+1, max, align="center")
+  delta = y.max - y.smooth[-c(1:w, n+1-1:w)]
+  i.max = which(delta <= 0) + w
   return(i.max)
 }
 
 
-standardize <- function(data_array){
+standardize = function(data_array){
     for(i in 1:(dim(data_array)[1])){
         ##centering        
         data_array[i, ,"X"] = data_array[i, ,"X"] - data_array[i, "Neck", "X"]
@@ -344,7 +344,7 @@ standardize <- function(data_array){
 }
 
 
-switching <- function(epoch_list, lag=1, thr=0.3){
+switching = function(epoch_list, lag=1, thr=0.3){
     joints = c("RKnee", "RAnkle", "LKnee", "LAnkle", "LBigToe", "LSmallToe", "LHeel", "RBigToe", "RSmallToe", "RHeel")
     for(i in seq_along(epoch_list)){
         for(j in seq_along(joints)){
@@ -364,7 +364,7 @@ switching <- function(epoch_list, lag=1, thr=0.3){
 }
 
 
-trajectory <- function(Data, joint_name=NULL, file_name=NULL){
+trajectory = function(Data, joint_name=NULL, file_name=NULL){
     if(is.list(Data)){
         X_list = Y_list = list()
         Time = numeric(0)
@@ -395,7 +395,7 @@ trajectory <- function(Data, joint_name=NULL, file_name=NULL){
     return(gg)
 }
 
-unepoch <- function(epoch_list){
+unepoch = function(epoch_list){
     n_list = lapply(epoch_list, function(x){dim(x)[1]})
     data_array = array(0, dim=c(sum(unlist(n_list)), dim(epoch_list[[1]])[2], dim(epoch_list[[1]])[3]))
 
