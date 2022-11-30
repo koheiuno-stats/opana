@@ -14,8 +14,12 @@ COG <- function(Data){
         Cycle = character(0)
         for(i in seq_along(Data)){
             n = dim(Data[[i]])[1]
-            X_list[[i]] = mean(Data[[i]][ ,-c(16:19), "X"])
-            Y_list[[i]] = mean(Data[[i]][ ,-c(16:19), "Y"])
+            XY_mat = matrix(0, nrow=n,col=2)
+            for(j in 1:n){
+                XY_mat[j,] = mean(Data[[i]][ j,-c(16:19), c(1:2)])                
+            }
+            X_list[[i]] = XY_mat[,1]
+            X_list[[i]] = XY_mat[,2]            
             Time = rbind(Time, matrix(0:(n-1), ncol=1))
             Cycle = rbind(Cycle, matrix(rep(i, n), ncol=1))
         }

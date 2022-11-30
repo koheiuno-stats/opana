@@ -353,15 +353,19 @@ switching = function(epoch_list, lag=1, thr=0.3){
     return(epoch_list)
 }
 
-COG = function(Data){
+COG <- function(Data){
     if(is.list(Data)){
         X_list = Y_list = list()
         Time = numeric(0)
         Cycle = character(0)
         for(i in seq_along(Data)){
             n = dim(Data[[i]])[1]
-            X_list[[i]] = matrix(mean(Data[[i]][ ,-c(16:19), "X"]),ncol=1)
-            Y_list[[i]] = matrix(mean(Data[[i]][ ,-c(16:19), "Y"]),ncol=1)
+            XY_mat = matrix(0, nrow=n,col=2)
+            for(j in 1:n){
+                XY_mat[j,] = mean(Data[[i]][ j,-c(16:19), c(1:2)])                
+            }
+            X_list[[i]] = XY_mat[,1]
+            X_list[[i]] = XY_mat[,2]            
             Time = rbind(Time, matrix(0:(n-1), ncol=1))
             Cycle = rbind(Cycle, matrix(rep(i, n), ncol=1))
         }
@@ -382,7 +386,6 @@ COG = function(Data){
     }
     return(gg)
 }
-
 
 trajectory = function(Data, joint_name=NULL, file_name=NULL){
     if(is.list(Data)){
