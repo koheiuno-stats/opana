@@ -14,12 +14,13 @@ COG <- function(Data){
         Cycle = character(0)
         for(i in seq_along(Data)){
             n = dim(Data[[i]])[1]
-            XY_mat = matrix(0, nrow=n,col=2)
+            XY_mat = matrix(0, nrow=n,ncol=2)
             for(j in 1:n){
-                XY_mat[j,] = mean(Data[[i]][ j,-c(16:19), c(1:2)])                
+                XY_mat[j,1] = mean(Data[[i]][ j, -c(16:19), 1], na.rm=TRUE)
+                XY_mat[j,2] = mean(Data[[i]][ j, -c(16:19), 2], na.rm=TRUE)                 
             }
-            X_list[[i]] = XY_mat[,1]
-            X_list[[i]] = XY_mat[,2]            
+            X_list[[i]] = matrix(XY_mat[,1],ncol=1)
+            Y_list[[i]] = matrix(XY_mat[,2],ncol=1)
             Time = rbind(Time, matrix(0:(n-1), ncol=1))
             Cycle = rbind(Cycle, matrix(rep(i, n), ncol=1))
         }
@@ -32,8 +33,8 @@ COG <- function(Data){
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=cycle)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle("COG")
     }else{
-        x = mean(Data[, -c(16:19),1])
-        y = mean(Data[, -c(16:19),2])
+        x = mean(apply(Data[, -c(16:19),1],1,mean,na.rm=TRUE))
+        y = mean(apply(Data[, -c(16:19),2],1,mean,na.rm=TRUE))
         df = data.frame(x=x, y=y, time=1:dim(Data)[1])
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle("COG")
