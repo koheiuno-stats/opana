@@ -1,13 +1,3 @@
-COG = function(data_array){
-    n = dim(data_array)[1]
-    cog = matrix(0,n,2)
-    for(i in 1:n){
-        cog[i,1] = mean(data_array[i, -c(16:19),1])
-        cog[i,2] = mean(data_array[i, -c(16:19),2])
-    }
-    colnames(cog) = c("X", "Y")
-    return(cog)
-}
 
 LR_detect = function(mat){
     Lscore = mat[c("LShoulder","LElbow","LWrist","LHip","LKnee","LAnkle","LEye","LEar","LBigToe","LSmallToe","LSmallToe","LHeel"),3]
@@ -363,6 +353,37 @@ switching = function(epoch_list, lag=1, thr=0.3){
     return(epoch_list)
 }
 
+COG = function(Data){
+    if(is.list(Data)){
+        X_list = Y_list = list()
+        Time = numeric(0)
+        Cycle = character(0)
+        for(i in seq_along(Data)){
+            n = dim(Data[[i]])[1]
+            X_list[[i]] = mean(Data[[i]][ ,-c(16:19), "X"])
+            Y_list[[i]] = mean(Data[[i]][ ,-c(16:19), "Y"])
+            Time = rbind(Time, matrix(0:(n-1), ncol=1))
+            Cycle = rbind(Cycle, matrix(rep(i, n), ncol=1))
+        }
+        X = unlist(lapply(X_list,rbind))
+        Y = unlist(lapply(Y_list,rbind))
+        
+        Cycle = factor(Cycle, levels = as.character(seq_along(Data)))
+
+        df = data.frame(x=X, y=Y, time=Time, cycle=Cycle)
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=cycle)) + ggplot2::geom_point()
+        gg = gg + ggplot2::ggtitle(file_name)
+    }else{
+        x = mean(Data[i, -c(16:19),1])
+        y = mean(Data[i, -c(16:19),2])
+        df = data.frame(x=x, y=y, time=1:dim(Data)[1])
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y)) + ggplot2::geom_point()
+        gg = gg + ggplot2::ggtitle(file_name)
+    }
+    colnames(gg) = c("X", "Y")
+    return(gg)
+}
+
 
 trajectory = function(Data, joint_name=NULL, file_name=NULL){
     if(is.list(Data)){
@@ -382,14 +403,14 @@ trajectory = function(Data, joint_name=NULL, file_name=NULL){
         Cycle = factor(Cycle, levels = as.character(seq_along(Data)))
 
         df = data.frame(x=X, y=Y, time=Time, cycle=Cycle)
-        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=cycle)) + ggplot2::geom_line()
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=cycle)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle(file_name)
     }else{
         
         x = Data[, joint_name, "X"]
         y = Data[, joint_name, "Y"]
         df = data.frame(x=x, y=y, time=1:dim(Data)[1])
-        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=time)) + ggplot2::geom_line() + ggplot2::scale_color_gradient(low="#00A0E9", high="#E60012")
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle(file_name)
     }
     return(gg)
