@@ -360,7 +360,7 @@ COG <- function(Data){
         Cycle = character(0)
         for(i in seq_along(Data)){
             n = dim(Data[[i]])[1]
-            XY_mat = matrix(0, nrow=n,ncol=2)
+            XY_mat = matrix(0,n,2)
             for(j in 1:n){
                 XY_mat[j,1] = mean(Data[[i]][ j, -c(16:19), 1], na.rm=TRUE)
                 XY_mat[j,2] = mean(Data[[i]][ j, -c(16:19), 2], na.rm=TRUE)                 
