@@ -380,7 +380,6 @@ COG = function(Data){
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle("COG")
     }
-    colnames(gg) = c("X", "Y")
     return(gg)
 }
 
