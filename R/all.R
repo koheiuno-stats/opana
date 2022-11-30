@@ -360,8 +360,8 @@ COG = function(Data){
         Cycle = character(0)
         for(i in seq_along(Data)){
             n = dim(Data[[i]])[1]
-            X_list[[i]] = mean(Data[[i]][ ,-c(16:19), "X"])
-            Y_list[[i]] = mean(Data[[i]][ ,-c(16:19), "Y"])
+            X_list[[i]] = matrix(mean(Data[[i]][ ,-c(16:19), "X"]),ncol=1)
+            Y_list[[i]] = matrix(mean(Data[[i]][ ,-c(16:19), "Y"]),ncol=1)
             Time = rbind(Time, matrix(0:(n-1), ncol=1))
             Cycle = rbind(Cycle, matrix(rep(i, n), ncol=1))
         }
@@ -374,8 +374,8 @@ COG = function(Data){
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=cycle)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle("COG")
     }else{
-        x = mean(Data[i, -c(16:19),1])
-        y = mean(Data[i, -c(16:19),2])
+        x = mean(Data[, -c(16:19),1])
+        y = mean(Data[, -c(16:19),2])
         df = data.frame(x=x, y=y, time=1:dim(Data)[1])
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle("COG")

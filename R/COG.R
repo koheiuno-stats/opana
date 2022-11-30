@@ -28,8 +28,8 @@ COG <- function(Data){
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=cycle)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle("COG")
     }else{
-        x = mean(Data[i, -c(16:19),1])
-        y = mean(Data[i, -c(16:19),2])
+        x = mean(Data[, -c(16:19),1])
+        y = mean(Data[, -c(16:19),2])
         df = data.frame(x=x, y=y, time=1:dim(Data)[1])
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y)) + ggplot2::geom_point()
         gg = gg + ggplot2::ggtitle("COG")
