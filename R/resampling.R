@@ -32,7 +32,7 @@ resampling <- function(Array, original=NULL, to=NULL){
                     "LHeel", "RBigToe", "RSmallToe", "RHeel")
 
     XYs_label = c("X", "Y", "score")
-    dimnames(data_array) = list(time = 1:re, joint = joint_label, XYs = XYs_label)    
+    dimnames(reArray) = list(time = 1:re, joint = joint_label, XYs = XYs_label)    
     
     return(reArray)
 }
