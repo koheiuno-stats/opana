@@ -30,13 +30,13 @@ COG <- function(Data){
         Cycle = factor(Cycle, levels = as.character(seq_along(Data)))
 
         df = data.frame(x=X, y=Y, time=Time, cycle=Cycle)
-        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=cycle)) + ggplot2::geom_point()
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=time)) + ggplot2::geom_path()
         gg = gg + ggplot2::ggtitle("COG")
     }else{
         x = mean(apply(Data[, -c(16:19),1],1,mean,na.rm=TRUE))
         y = mean(apply(Data[, -c(16:19),2],1,mean,na.rm=TRUE))
         df = data.frame(x=x, y=y, time=1:dim(Data)[1])
-        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y)) + ggplot2::geom_point()
+        gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=time)) + ggplot2::geom_path()
         gg = gg + ggplot2::ggtitle("COG")
     }
     return(gg)

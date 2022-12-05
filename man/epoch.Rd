@@ -4,7 +4,7 @@
 \alias{epoch}
 \title{epoch}
 \usage{
-epoch(data_array, maxtime)
+epoch(data_array, maxtime = 100, epoch_manual = NULL)
 }
 \arguments{
 \item{data_array}{data array.}

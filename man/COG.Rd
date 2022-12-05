@@ -4,7 +4,7 @@
 \alias{COG}
 \title{COG}
 \usage{
-COG(data_array)
+COG(Data)
 }
 \arguments{
 \item{data_array}{data array.}
