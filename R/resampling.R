@@ -25,6 +25,7 @@ resampling <- function(Array, original=NULL, to=NULL){
             }
         }
     }
+    dimnames(reArray) = dimnames(Array)
     return(reArray)
 }
 
