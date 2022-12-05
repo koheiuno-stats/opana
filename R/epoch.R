@@ -30,6 +30,7 @@ epoch <- function(data_array, maxtime=100, epoch_manual=NULL){
             normalize_list[[j]] = data_array                    
         }
     }else{
+        epoch_list()
         for(j in 1:(length(epoch_manual))){
             epoch_list[[j]] = data_array[epoch_manual[[j]], ,]            
         }
