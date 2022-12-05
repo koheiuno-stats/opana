@@ -1,15 +1,28 @@
 #' @title resampling
 #'
-#' @description convert vector to arbitrary length vector
+#' @description convert array to arbitrary length array
 #'
-#' @param TS times series vector.
+#' @param Array array.
 #' @param to arbitrary length
 #'
 #' @export
+#'
+#'
 
-resampling <- function(TS, to=NULL){
-    apf = approx(x=1:length(TS), y=TS, n=to)
-    return(apf$y)
+resampling <- function(Array, to=NULL){
+    DIM = dim(Array)
+    reArray = dim(0,dim(to, DIM[2], DIM[3]))
+
+    for(j in 1:DIM[2]){
+        for(h in 1:DIM[3]){
+            if(sum(is.na(Array[ , j, h])) > DIM[1]*0.5 ){
+                reArray[ , j, h] = rep(NA, to)
+            }else{
+                reArray[ , j, h] = approx(x=1:DIM[1], y=Array[ , j, h], n=to)
+            }
+        }
+    }
+    return(reArray)
 }
 
 
