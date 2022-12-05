@@ -21,7 +21,7 @@ resampling <- function(Array, original=NULL, to=NULL){
             if(sum(is.na(Array[ , j, h])) > DIM[1]*0.5 ){
                 reArray[ , j, h] = NA
             }else{
-                reArray[ , j, h] = approx(x=1:DIM[1], y=Array[ , j, h], n=re)
+                reArray[ , j, h] = approx(x=1:DIM[1], y=Array[ , j, h], n=re)$y
             }
         }
     }
