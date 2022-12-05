@@ -25,7 +25,15 @@ resampling <- function(Array, original=NULL, to=NULL){
             }
         }
     }
-    dimnames(reArray) = dimnames(Array)
+
+    joint_label = c("Nose", "Neck", "RShoulder", "RElbow", "RWrist", "LShoulder", "LElbow",
+                    "LWrist", "MidHip", "RHip", "RKnee", "RAnkle", "LHip", "LKnee", "LAnkle",
+                    "REye", "LEye", "REar", "LEar", "LBigToe", "LSmallToe", 
+                    "LHeel", "RBigToe", "RSmallToe", "RHeel")
+
+    XYs_label = c("X", "Y", "score")
+    dimnames(data_array) = list(time = 1:re, joint = joint_label, XYs = XYs_label)    
+    
     return(reArray)
 }
 
