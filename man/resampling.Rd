@@ -4,13 +4,13 @@
 \alias{resampling}
 \title{resampling}
 \usage{
-resampling(TS, to = NULL)
+resampling(Array, original = NULL, to = NULL)
 }
 \arguments{
-\item{TS}{times series vector.}
+\item{Array}{array.}
 
 \item{to}{arbitrary length}
 }
 \description{
-convert vector to arbitrary length vector
+convert array to arbitrary length array
 }
