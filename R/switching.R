@@ -27,5 +27,5 @@ switching <- function(epoch_list){
             }
         }
     }
-    return(epoch_list)
+    return(new_list)
 }
