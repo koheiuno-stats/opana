@@ -35,7 +35,7 @@ COG <- function(Data){
     }else{
         x = mean(apply(Data[, -c(16:19),1],1,mean,na.rm=TRUE))
         y = mean(apply(Data[, -c(16:19),2],1,mean,na.rm=TRUE))
-        df = data.frame(x=x, y=y, time=1:dim(Data)[1])
+        df = data.frame(x=x, y=y, time=1:(dim(Data)[1]))
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=time)) + ggplot2::geom_path()
         gg = gg + ggplot2::ggtitle("COG")
     }
