@@ -3,11 +3,9 @@
 #' @description switching() can detect NA and impute them. 
 #'
 #' @param epoch_list epoch list.
-#' @param lag lag.
-#' @param thr threshold.
 #' 
 #' @export
-switching <- function(epoch_list, lag=1, thr=0.3){
+switching <- function(epoch_list)
     joints = list()
     joints[[1]] = c("RKnee", "LKnee")
     joints[[2]] = c("RAnkle", "LAnkle"),
