@@ -10,7 +10,7 @@ switching <- function(epoch_list){
     joints[[1]] = c("RKnee", "LKnee")
     joints[[2]] = c("RAnkle", "LAnkle")
     joints[[3]] = c("RBigToe","LBigToe")
-    joitns[[4]] = c("RSmallToe","LSmallToe")
+    joints[[4]] = c("RSmallToe","LSmallToe")
     joints[[5]] = c("RHeel","LHeel")
 
     new_list = epoch_list
