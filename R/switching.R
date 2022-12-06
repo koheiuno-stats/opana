@@ -5,7 +5,7 @@
 #' @param epoch_list epoch list.
 #' 
 #' @export
-switching <- function(epoch_list)
+switching <- function(epoch_list){
     joints = list()
     joints[[1]] = c("RKnee", "LKnee")
     joints[[2]] = c("RAnkle", "LAnkle")
@@ -22,11 +22,10 @@ switching <- function(epoch_list)
                 dist2 = mean((epoch_list[[i]][t, joints[[j]][2], 1:2] - epoch_list[[i]][t-1, joints[[j]][1], 1:2])^2, na.rm=TRUE)
                 if(dist2 < dist1){
                     new_list[[i]][t, joints[[j]][1], 1:2] = epoch_list[[i]][t, joints[[j]][2], 1:2]
-                    new_list[[i]][t, joints[[j]][2], 1:2] = epoch_list[[i]][t, joints[[j]][1], 1:2]                
+                    new_list[[i]][t, joints[[j]][2], 1:2] = epoch_list[[i]][t, joints[[j]][1], 1:2]
                 }
             }
         }
     }
-    
     return(epoch_list)
 }
