@@ -41,6 +41,9 @@ COG <- function(Data, trajectory=TRUE){
             gg = gg + ggplot2::ggtitle("COG")
         }
     }
+    if(!trajectory){
+        
+    }
     return(gg)
 }
     
