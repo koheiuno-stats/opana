@@ -23,8 +23,8 @@ switching <- function(epoch_list, lag=5, thr=0.3, fit=0.2){
             diff_y = abs(diff(epoch_list[[i]][, joints[j], 2], lag=lag, na.rm=TRUE))
             y_d = c(1:dim(epoch_list[[i]])[1])[c(rep(0,lag), diff_y) >= thr]
             
-            X[union(x_d, y_d), ] = NA
-            Y[union(x_d, y_d), ] = NA            
+            X[union(x_d, y_d) ] = NA
+            Y[union(x_d, y_d) ] = NA            
             
             new_X = zoo::na.approx(X, na.rm=FALSE)
             new_Y = zoo::na.approx(Y, na.rm=FALSE)
