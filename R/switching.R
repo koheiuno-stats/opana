@@ -5,27 +5,53 @@
 #' @param epoch_list epoch list.
 #' 
 #' @export
-switching <- function(epoch_list){
-    joints = list()
-    joints[[1]] = c("RKnee", "LKnee")
-    joints[[2]] = c("RAnkle", "LAnkle")
-    joints[[3]] = c("RBigToe","LBigToe")
-    joints[[4]] = c("RSmallToe","LSmallToe")
-    joints[[5]] = c("RHeel","LHeel")
-
-    new_list = epoch_list
-    
+"
+switching <- function(epoch_list, lag=1, thr=0.3){
+    joints = c("RKnee", "RAnkle", "LKnee", "LAnkle", "LBigToe", "LSmallToe", "LHeel", "RBigToe", "RSmallToe", "RHeel")
     for(i in seq_along(epoch_list)){
-        for(j in 1:5){
-            for(t in 3:(dim(epoch_list[[i]])[1])){
-                dist1 = mean((epoch_list[[i]][t, joints[[j]][1], 1:2] - mean(new_list[[i]][(t-2):(t-1), joints[[j]][1], 1:2]))^2)
-                dist2 = mean((epoch_list[[i]][t, joints[[j]][2], 1:2] - mean(new_list[[i]][(t-2):(t-1), joints[[j]][1], 1:2]))^2)
-                if(dist2 < dist1){
-                    new_list[[i]][t, joints[[j]][1], 1:2] = epoch_list[[i]][t, joints[[j]][2], 1:2]
-                    new_list[[i]][t, joints[[j]][2], 1:2] = epoch_list[[i]][t, joints[[j]][1], 1:2]
-                }
-            }
+        for(j in seq_along(joints)){
+            diff_x = abs(diff(epoch_list[[i]][, joints[j], 1], lag=lag, na.rm=TRUE))
+            x_d = c(1:dim(epoch_list[[i]])[1])[c(rep(0,lag), diff_x) >= thr]
+
+            diff_y = abs(diff(epoch_list[[i]][, joints[j], 2], lag=lag, na.rm=TRUE))
+            y_d = c(1:dim(epoch_list[[i]])[1])[c(rep(0,lag), diff_y) >= thr]
+            
+            epoch_list[[i]][union(x_d, y_d), joints[j], ] = NA
+
+            epoch_list[[i]][, joints[j], "X"] = zoo::na.approx(epoch_list[[i]][, joints[j], "X"], na.rm=FALSE)
+            epoch_list[[i]][, joints[j], "Y"] = zoo::na.approx(epoch_list[[i]][, joints[j], "Y"], na.rm=FALSE)
         }
     }
-    return(new_list)
+    return(epoch_list)
+}
+"
+switching <- function(epoch_list, lag=5, thr=0.3, fit=0.2){
+    new_list = epoch_list 
+    joints = c("RKnee", "RAnkle", "LKnee", "LAnkle", "LBigToe", "LSmallToe", "LHeel", "RBigToe", "RSmallToe", "RHeel")
+    for(i in seq_along(epoch_list)){
+        for(j in seq_along(joints)){
+            X = epoch_list[[i]][, joints[j], 1]
+            Y = epoch_list[[i]][, joints[j], 2]
+
+            diff_x = abs(diff(epoch_list[[i]][, joints[j], 1], lag=lag, na.rm=TRUE))
+            x_d = c(1:dim(epoch_list[[i]])[1])[c(rep(0,lag), diff_x) >= thr]
+
+            diff_y = abs(diff(epoch_list[[i]][, joints[j], 2], lag=lag, na.rm=TRUE))
+            y_d = c(1:dim(epoch_list[[i]])[1])[c(rep(0,lag), diff_y) >= thr]
+            
+            X[union(x_d, y_d), ] = NA
+            Y[union(x_d, y_d), ] = NA            
+            
+            new_X = zoo::na.approx(X, na.rm=FALSE)
+            new_Y = zoo::na.approx(Y, na.rm=FALSE)
+
+            x_d = c(1:length(X))[abs(new_X - epoch_list[[i]][, joints[j], 1]) > fit]
+            y_d = c(1:length(X))[abs(new_Y - epoch_list[[i]][, joints[j], 2]) > fit]
+            
+            epoch_list[[i]][union(x_d, y_d), joints[j], ] = NA            
+            epoch_list[[i]][, joints[j], "X"] = zoo::na.approx(epoch_list[[i]][, joints[j], "X"], na.rm=FALSE)
+            epoch_list[[i]][, joints[j], "Y"] = zoo::na.approx(epoch_list[[i]][, joints[j], "Y"], na.rm=FALSE)
+        }
+    }
+    return(epoch_list)
 }
