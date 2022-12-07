@@ -11,7 +11,7 @@
 
 resampling <- function(Array, original=NULL, to=NULL){
 
-    re = (dim(Array)[1])*(to/original)
+    re = floor((dim(Array)[1])*(to/original))
     
     DIM = dim(Array)
     reArray = array(0,dim=c(re, DIM[2], DIM[3]))
