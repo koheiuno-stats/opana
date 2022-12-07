@@ -23,7 +23,7 @@ epoch <- function(data_array, maxtime=100, epoch_manual=NULL){
                 for(m in 1:2){
                     if(sum(is.na(epoch_list[[j]][ , k, m])) > ns[j]*0.5){next}
                     apf = stats::approxfun(x=1:ns[j], y=epoch_list[[j]][ , k, m])                
-                    data_array[, k, m] = apf(seq(from=1, to=ns[j], by=(ns[j]-1)/maxtime))
+                    Array[, k, m] = apf(seq(from=1, to=ns[j], by=(ns[j]-1)/maxtime))
                 }
             }
             dimnames(Array) = list(time=0:maxtime,joints = joint_label,XYs = c("X", "Y", "score"))
