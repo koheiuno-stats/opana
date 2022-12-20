@@ -26,8 +26,9 @@ ankle_angle <- function(data_array, stand=TRUE){
 ##                v1 = spdep::Rotation(m, 90*pi/180)
             }
         }
-        H90 = v1[1,] - v1[2,]
+        H90 = v1[1,] - v1[2,] 
         H2T =  data_array[t, "LBigToe", 1:2] - data_array[t, "LHeel", 1:2]
+        if(is.na(H2T[1])){next}
         if(LR_detect(data_array[t,,])=="Left"){
             if(H90[1] < H2T[1]){
                 LA_angles[t] = angle(H90, H2T)
@@ -43,7 +44,8 @@ ankle_angle <- function(data_array, stand=TRUE){
             }
         }
 
-        K2A = data_array[t, "RAnkle", 1:2] - data_array[t, "RKnee", 1:2]
+        K2A = data_array[t, "RAnkle", 1:2] - data_array[t, "RKnee", 1:2] 
+        if(is.na(K2A[1])){next}       
         m = matrix(c(data_array[t, "RKnee", 1:2], data_array[t, "RAnkle", 1:2]),2,2, byrow = TRUE)
         if(LR_detect(data_array[t, ,])=="Left"){
             if(stand==TRUE){
@@ -61,6 +63,7 @@ ankle_angle <- function(data_array, stand=TRUE){
         }
         H90 = v1[1,] - v1[2,]
         H2T =  data_array[t, "RBigToe", 1:2] - data_array[t, "RHeel", 1:2]
+        if(is.na(H2T[1])){next}        
         if(LR_detect(data_array[t,,])=="Left"){
             if(H90[1] < H2T[1]){
                 RA_angles[t] = angle(H90, H2T)
