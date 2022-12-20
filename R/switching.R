@@ -10,18 +10,17 @@
 #' @export
 
 switching <- function(epoch_list, lag=5, thr=0.3, fit=0.3){
-    new_list = epoch_list 
     joints = c("RKnee", "RAnkle", "LKnee", "LAnkle", "LBigToe", "LSmallToe", "LHeel", "RBigToe", "RSmallToe", "RHeel")
     for(i in seq_along(epoch_list)){
         for(j in seq_along(joints)){
             X = epoch_list[[i]][, joints[j], 1]
             Y = epoch_list[[i]][, joints[j], 2]
 
-            diff_x = abs(diff(epoch_list[[i]][, joints[j], 1], lag=lag, na.rm=TRUE))
-            x_d = c(1:dim(epoch_list[[i]])[1])[c(rep(0,lag), diff_x) >= thr]
+            diff_x = abs(diff(X, lag=lag, na.rm=TRUE))
+            x_d = c(1:length(X))[c(rep(0,lag), diff_x) >= thr]
 
-            diff_y = abs(diff(epoch_list[[i]][, joints[j], 2], lag=lag, na.rm=TRUE))
-            y_d = c(1:dim(epoch_list[[i]])[1])[c(rep(0,lag), diff_y) >= thr]
+            diff_y = abs(diff(Y, lag=lag, na.rm=TRUE))
+            y_d = c(1:length(Y))[c(rep(0,lag), diff_y) >= thr]
             
             X[x_d] = NA
             Y[y_d] = NA            
@@ -37,5 +36,9 @@ switching <- function(epoch_list, lag=5, thr=0.3, fit=0.3){
             epoch_list[[i]][, joints[j], "Y"] = zoo::na.approx(epoch_list[[i]][, joints[j], "Y"], na.rm=FALSE)
         }
     }
+
+    
     return(epoch_list)
 }
+
+    
