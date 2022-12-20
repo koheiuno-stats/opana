@@ -4,14 +4,16 @@
 \alias{switching}
 \title{switching}
 \usage{
-switching(epoch_list, lag = 1, thr = 0.3)
+switching(epoch_list, lag = 5, thr = 0.3, fit = 0.3)
 }
 \arguments{
 \item{epoch_list}{epoch list.}
 
 \item{lag}{lag.}
 
-\item{thr}{threshold.}
+\item{thr}{threshold}
+
+\item{fit}{fitting threshold}
 }
 \description{
 switching() can detect NA and impute them.

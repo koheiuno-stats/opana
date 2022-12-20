@@ -4,10 +4,14 @@
 \alias{standardize}
 \title{standardize}
 \usage{
-standardize(data_array)
+standardize(data_array, centering = TRUE, scaling = TRUE, anchor = "Neck")
 }
 \arguments{
-\item{data_array}{data array.}
+\item{data_array}{input data array.}
+
+\item{centering}{bool variable, center coordinate or not}
+
+\item{scaling}{bool variable, center coordinate or not}
 }
 \description{
 standardize() can standardize data array.
