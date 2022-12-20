@@ -4,7 +4,7 @@
 \alias{jump_imp}
 \title{jump_imp}
 \usage{
-jump_imp(epoch_list, sd_ratio = 1, lag = 3, fit = 0.2, except_joint = NULL)
+jump_imp(epoch_list, sd_ratio = 1, lag = 3, rept = 5, except_joint = NULL)
 }
 \arguments{
 \item{epoch_list}{data array.}
@@ -13,7 +13,7 @@ jump_imp(epoch_list, sd_ratio = 1, lag = 3, fit = 0.2, except_joint = NULL)
 
 \item{lag}{lag.}
 
-\item{fit}{fit.}
+\item{rept}{the number of repeat.}
 
 \item{except_joint}{vector of except joints}
 }
