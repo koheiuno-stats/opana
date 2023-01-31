@@ -45,7 +45,7 @@ angle_plot <- function(Data, sagittal="left", LR="left", angle_name=NULL){
         Cycle = factor(Cycle, levels = as.character(seq_along(Data)))
 
         df = data.frame(angle=A)
-        df = reshape2::melt(df)
+        df = reshape2::melt(df, id.vars=NULL)
         df = cbind(Time, Cycle, df)
         colnames(df) = c("time", "cycle", "axis", "angle")
         gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=angle, color=cycle)) + ggplot2::geom_line(ggplot2::aes(color=cycle))
@@ -75,7 +75,7 @@ angle_plot <- function(Data, sagittal="left", LR="left", angle_name=NULL){
             }
         }
         df = data.frame(angle=A_list)
-        df = reshape2::melt(df)
+        df = reshape2::melt(df, id.vars=NULL)
         df = cbind(df, rep(1:nrow(df),ncol(df)-1))
         colnames(df) = c("axis", "angle", "time")
         gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=angle)) + ggplot2::geom_line()

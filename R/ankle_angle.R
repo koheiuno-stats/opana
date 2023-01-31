@@ -7,7 +7,7 @@
 #'
 #' @export
 
-ankle_angle <- function(data_array, stand=TRUE, LR=NULL){
+ankle_angle <- function(data_array, stand=TRUE, LR="Left"){
     LA_angles = RA_angles = matrix(NA, nrow=dim(data_array)[1], ncol=1)    
 
     for(t in 1:(dim(data_array)[1])){
