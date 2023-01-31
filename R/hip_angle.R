@@ -12,11 +12,11 @@ hip_angle <- function(data_array, stand=TRUE){
     for(t in 1:(dim(data_array)[1])){
         H2floor[1] = 0
         if(stand == TRUE){
-            H2floor[2] = data_array[t, "LHip", "Y"] - min(data_array[t,,"Y"], na.rm=TRUE)
+            H2floor[2] = min(data_array[t,,"Y"], na.rm=TRUE) - data_array[t, "LHip", "Y"] 
         }else{
-            H2floor[2] = data_array[t, "LHip", "Y"] - max(data_array[t,,"Y"], na.rm=TRUE)
+            H2floor[2] = max(data_array[t,,"Y"], na.rm=TRUE) - data_array[t, "LHip", "Y"] 
         }
-        H2K = data_array[t, "LHip", 1:2] - data_array[t, "LKnee", 1:2]
+        H2K = data_array[t, "LKnee", 1:2] - data_array[t, "LHip", 1:2]
         if(is.na(H2K[1])){next}
         if(H2K[1] > 0){
             LH_angles[t] = angle(H2floor, H2K)
@@ -26,16 +26,16 @@ hip_angle <- function(data_array, stand=TRUE){
 
         H2floor[1] = 0
         if(stand == TRUE){
-            H2floor[2] = data_array[t, "RHip", "Y"] - min(data_array[t,,"Y"], na.rm=TRUE)
+            H2floor[2] = min(data_array[t,,"Y"], na.rm=TRUE) - data_array[t, "RHip", "Y"]
         }else{
-            H2floor[2] = data_array[t, "RHip", "Y"] - max(data_array[t,,"Y"], na.rm=TRUE)
+            H2floor[2] = max(data_array[t,,"Y"], na.rm=TRUE) - data_array[t, "RHip", "Y"] 
         }
-        H2K = data_array[t, "RHip", 1:2] - data_array[t, "RKnee", 1:2]
+        H2K = data_array[t, "RKnee", 1:2] - data_array[t, "RHip", 1:2]
         if(is.na(H2K[1])){next}        
         if(H2K[1] > 0){
-            RH_angles[t] = angle(H2floor, H2K)
-        }else{
             RH_angles[t] = -angle(H2floor, H2K)
+        }else{
+            RH_angles[t] = angle(H2floor, H2K)
         }
     }
     list(Left=LH_angles ,Right=RH_angles)
