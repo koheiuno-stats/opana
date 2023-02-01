@@ -81,5 +81,5 @@ angle_plot <- function(Data, sagittal="left", LR="left", angle_name=NULL){
         gg = ggplot2::ggplot(df, ggplot2::aes(x=time, y=angle)) + ggplot2::geom_line()
     }
     gg = gg + ggplot2::ggtitle(paste(angle_name,"Angle", sep="_"))    
-    return(gg)
+    list(plot=gg, df=df)
 }

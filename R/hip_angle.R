@@ -33,9 +33,9 @@ hip_angle <- function(data_array, stand=TRUE){
         H2K = data_array[t, "RKnee", 1:2] - data_array[t, "RHip", 1:2]
         if(is.na(H2K[1])){next}        
         if(H2K[1] > 0){
-            RH_angles[t] = -angle(H2floor, H2K)
-        }else{
             RH_angles[t] = angle(H2floor, H2K)
+        }else{
+            RH_angles[t] = -angle(H2floor, H2K)
         }
     }
     list(Left=LH_angles ,Right=RH_angles)

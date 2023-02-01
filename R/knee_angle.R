@@ -15,7 +15,7 @@ knee_angle <- function(data_array){
         LK_angles[t] = angle(H2K, K2A)
 
         H2K = data_array[t, "RKnee", 1:2] - data_array[t, "RHip", 1:2]        
-        K2A = data_array[t, "RAnkle", 1:2] - data_array[t, "RHip", 1:2]
+        K2A = data_array[t, "RAnkle", 1:2] - data_array[t, "RKnee", 1:2]
         RK_angles[t] = angle(H2K, K2A)
     }
     list(Left=LK_angles, Right=RK_angles)
