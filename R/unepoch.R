@@ -23,5 +23,3 @@ unepoch <- function(epoch_list){
     dimnames(data_array) = list(time = 1:dim(data_array)[1], joint = joint_label, XYs = XYs_label)    
     return(data_array)
 }
-
-
