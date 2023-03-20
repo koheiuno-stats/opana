@@ -20,6 +20,10 @@ unepoch <- function(epoch_list){
                     "REye", "LEye", "REar", "LEar", "LBigToe", "LSmallToe", 
                     "LHeel", "RBigToe", "RSmallToe", "RHeel")
     XYs_label = c("X", "Y", "score")
-    dimnames(data_array) = list(time = 1:dim(data_array)[1], joint = joint_label, XYs = XYs_label)    
+    dimnames(data_array) = list(time = 1:dim(data_array)[1], joint = joint_label, XYs = XYs_label)
+    
     return(data_array)
 }
+
+
+
