@@ -34,7 +34,9 @@ trajectory <- function(Data, joint_name=NULL, file_name=NULL){
         y = Data[, joint_name, "Y"]
         df = data.frame(x=x, y=y, time=1:dim(Data)[1])
         gg = ggplot2::ggplot(df, ggplot2::aes(x=x, y=y, color=time)) + ggplot2::geom_path()
-        gg = gg + ggplot2::ggtitle(file_name)
+        gg = gg + ggplot2::scale_color_gradient2(low="#00A0E9", high="#E60012")  + ggplot2::ggtitle(file_name)
     }
     return(gg)
 }
+
+

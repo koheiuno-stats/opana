@@ -23,6 +23,9 @@ ankle_angle <- function(data_array, stand=TRUE, LR="Left"){
             rK2A = rot(mat, 90)}
         
         H90 = c(rK2A[1,] - rK2A[2,])
+        if(is.na(H2T[2] | is.na(H90[2]))){
+            next
+        }
         if(H2T[2] > H90[2]){
             LA_angles[t] = angle(H90, H2T)            
         }else{
@@ -45,6 +48,9 @@ ankle_angle <- function(data_array, stand=TRUE, LR="Left"){
         if(LR=="Right"){
             rK2A = rot(mat, 90)}
         H90 = c(rK2A[1,] - rK2A[2,])
+        if(is.na(H2T[2] | is.na(H90[2]))){
+            next
+        }        
         if(H2T[2] > H90[2]){
             RA_angles[t] = angle(H90, H2T)            
         }else{
