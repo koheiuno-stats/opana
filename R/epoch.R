@@ -4,6 +4,7 @@
 #' 
 #' @param data_array data array.
 #' @param maxtime maxtime.
+#' @param LR Left or Right.
 #' @export
 
 epoch <- function(data_array, maxtime=100, LR = "left", epoch_manual=NULL){
