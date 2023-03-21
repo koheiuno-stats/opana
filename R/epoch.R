@@ -6,10 +6,16 @@
 #' @param maxtime maxtime.
 #' @export
 
-epoch <- function(data_array, maxtime=100, epoch_manual=NULL){
+epoch <- function(data_array, maxtime=100, LR = "left", epoch_manual=NULL){
     joint_label = dimnames(data_array)[[2]]
     if(is.null(epoch_manual)){
-        signal = -data_array[, "LBigToe", "X"]
+
+        if(LR == "left"){
+            signal = -data_array[, "LBigToe", "X"]            
+        }
+        if(LR == "right"){
+            signal = -data_array[, "RBigToe", "X"]                        
+        }
         event = peak_det(signal, w=5, span=0.02)
         epoch_list = list()
         for(j in 1:(length(event)-1)){
