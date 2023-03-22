@@ -4,12 +4,14 @@
 \alias{epoch}
 \title{epoch}
 \usage{
-epoch(data_array, maxtime = 100, epoch_manual = NULL)
+epoch(data_array, maxtime = 100, LR = "left", epoch_manual = NULL)
 }
 \arguments{
 \item{data_array}{data array.}
 
 \item{maxtime}{maxtime.}
+
+\item{LR}{Left or Right.}
 }
 \description{
 epoch convert data to list based on epoching by peak detection.

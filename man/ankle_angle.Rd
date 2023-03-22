@@ -4,7 +4,7 @@
 \alias{ankle_angle}
 \title{ankle_angle}
 \usage{
-ankle_angle(data_array, stand = TRUE)
+ankle_angle(data_array, stand = TRUE, LR = "Left")
 }
 \arguments{
 \item{data_array}{data array.}

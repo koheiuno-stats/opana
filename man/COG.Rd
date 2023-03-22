@@ -4,7 +4,7 @@
 \alias{COG}
 \title{COG}
 \usage{
-COG(Data)
+COG(Data, trajectory = TRUE)
 }
 \arguments{
 \item{data_array}{data array.}
