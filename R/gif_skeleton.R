@@ -9,7 +9,7 @@
 #' @export
 #'
 
-vis_skeleton <- function(Array, interval=0.2, filename){    
+gif_skeleton <- function(Array, interval=0.2, filename){    
     animation::saveGIF(vis_array(Array), movie.name=filename, interval=interval)        
 }
 
