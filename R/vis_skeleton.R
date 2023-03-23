@@ -10,14 +10,8 @@
 #' @export
 #'
 
-vis_skeleton <- function(mat, xlim, ylim, filename=NULL){
-
-    pdf(paste0(filename,".pdf"), width = 6,height = 6)
+vis_skeleton <- function(mat, xlim, ylim){
     plot(mat, xlim=xlim, ylim=ylim, lwd=2)
-##    matplot(tt,event[,i],type="l",col=i,main=ftpos[i])
-##    matplot(tt,rawfoot[,i],type="l",col="orange",lwd=0.5,add=TRUE)
-##    points(tt[strikepoint_list[[i]]],event[strikepoint_list[[i]],i],pch=16,col="blue")
-
     col = grDevices::rainbow(nrow(mat), alpha=0.8)    
     if(nrow(mat) == 25){
         if(sum(is.na(mat[c(1:2),1:2])) == 0){
@@ -69,7 +63,6 @@ vis_skeleton <- function(mat, xlim, ylim, filename=NULL){
         if(sum(is.na(mat[20:21, 1:2])) == 0){
             graphics::segments(mat[20,1], mat[20,2], mat[21,1], mat[21,2], col=col[24], lwd=3)}
     }
-  dev.off()
 }
 
 
