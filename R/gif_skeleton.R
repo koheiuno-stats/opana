@@ -9,12 +9,7 @@
 #' @export
 #'
 
-gif_skeleton <- function(Array, interval=0.2, filename){
-    vis_array(Array)    
-    animation::saveGIF(vis_array(Array), movie.name=filename, interval=interval)        
-}
-
-vis_array <- function(Array){
+gif_skeleton <- function(Array){
     xlim = c(min(Array[, , 1], na.rm=TRUE), max(Array[, , 1], na.rm=TRUE))
     ylim = c(min(Array[, , 2], na.rm=TRUE), max(Array[, , 2], na.rm=TRUE))
     
