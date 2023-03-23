@@ -4,7 +4,7 @@
 \alias{vis_skeleton}
 \title{vis_skeleton}
 \usage{
-vis_skeleton(mat, xlim, ylim, filename = NULL)
+vis_skeleton(mat, xlim, ylim)
 }
 \arguments{
 \item{filename}{}

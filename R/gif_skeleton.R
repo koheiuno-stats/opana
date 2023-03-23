@@ -2,9 +2,9 @@
 #'
 #' @description gif_skeleton can visualize the skeleton of 1 frame
 #'
-#' @param Array
-#' @param interval
-#' @param filename
+#' @param Array openpose joint coordinate array 
+#' @param interval interval parameter for gif animation
+#' @param filename filepath
 #'
 #' @export
 #'
