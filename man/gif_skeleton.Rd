@@ -4,14 +4,10 @@
 \alias{gif_skeleton}
 \title{gif_skeleton}
 \usage{
-gif_skeleton(Array, interval = 0.2, filename)
+gif_skeleton(Array)
 }
 \arguments{
 \item{Array}{openpose joint coordinate array}
-
-\item{interval}{interval parameter for gif animation}
-
-\item{filename}{filepath}
 }
 \description{
 gif_skeleton can visualize the skeleton of 1 frame
