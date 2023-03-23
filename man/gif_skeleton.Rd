@@ -7,7 +7,11 @@
 gif_skeleton(Array, interval = 0.2, filename)
 }
 \arguments{
-\item{filename}{}
+\item{Array}{openpose joint coordinate array}
+
+\item{interval}{interval parameter for gif animation}
+
+\item{filename}{filepath}
 }
 \description{
 gif_skeleton can visualize the skeleton of 1 frame
