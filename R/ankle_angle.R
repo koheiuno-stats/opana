@@ -68,3 +68,9 @@ rot <- function(X2Y, angle){
     r = X2Y%*%t( matrix(c(ca, sa, -sa, ca),2,2))
     return(r)
 }
+
+angle <- function(M,N){
+    acs = acos(sum(M*N) / (sqrt(sum(M*M))*sqrt(sum(N*N))))
+    deg = acs*(180/pi)
+    return(deg)
+}

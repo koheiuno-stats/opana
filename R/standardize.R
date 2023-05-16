@@ -8,6 +8,7 @@
 #'
 #' @export
 
+
 standardize <- function(data_array, centering=TRUE, scaling=TRUE, anchor="Neck"){
     ## floor standardization
     if(anchor=="Floor"){
@@ -39,6 +40,29 @@ standardize <- function(data_array, centering=TRUE, scaling=TRUE, anchor="Neck")
             if(centering){
                 data_array[i, ,"X"] = data_array[i, ,"X"] - data_array[i, "Neck", "X"]
                 data_array[i, ,"Y"] = data_array[i, ,"Y"] - data_array[i, "Neck", "Y"]
+            }            
+            data_array[i, ,"Y"] = - data_array[i, ,"Y"] #convert to xy-axis
+            
+            ## scaling
+            if(scaling){
+                scal = sqrt(sum((data_array[i, "Neck", 1:2] - data_array[i, "MidHip", 1:2])^2))
+                for(j in 1:(dim(data_array)[2])){
+                    data_array[i, j, 1:2] = data_array[i,j,1:2]/scal
+                }
+            }
+        }
+    }
+
+    ## neck standardization
+    if(anchor=="Fix"){
+        X = data_array[i, "Neck", "X"]
+        Y = data_array[i, "Neck", "Y"]
+        
+        for(i in 1:(dim(data_array)[1])){        
+            ## centering
+            if(centering){
+                data_array[i, ,"X"] = data_array[i, ,"X"] - X
+                data_array[i, ,"Y"] = data_array[i, ,"Y"] - Y
             }            
             data_array[i, ,"Y"] = - data_array[i, ,"Y"] #convert to xy-axis
             

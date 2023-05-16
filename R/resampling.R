@@ -36,5 +36,3 @@ resampling <- function(Array, original=NULL, to=NULL){
     
     return(reArray)
 }
-
-
