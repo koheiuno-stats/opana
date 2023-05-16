@@ -1,5 +1,5 @@
 Package: opana
-Title: opana OpenPose data analysis package
+\Title: opana OpenPose data analysis package
 Version: 0.0.0.9000
 Authors@R: 
     person("Kohei", "Uno", , "koheiuno@met.nagoya-u.ac.jp", role=c("aut", "cre"),
