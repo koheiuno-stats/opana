@@ -36,9 +36,9 @@ anno_det <- function(epoch_list, original_list, percentile = 95){
             original_list[[i]][union(id_x, id_y), j, 1:2] = NA
 
             z1 = zoo::na.approx(original_list[[i]][, j, 1], na.rm=FALSE)
-            new_list[[i]][ ,j, 1] = z1            
+            original_list[[i]][ ,j, 1] = z1            
             z2 = zoo::na.approx(original_list[[i]][, j, 2], na.rm=FALSE)
-            new_list[[i]][ ,j, 2] = z2            
+            original_list[[i]][ ,j, 2] = z2            
         }        
     }
     return(list(original=original_list, new=new_list))
