@@ -1,6 +1,6 @@
-#' @title jump_imp
+#' @title jmp_imp
 #'
-#' @description jump_imp() can impute missing data. 
+#' @description jmp_imp() can impute missing data. 
 #'
 #' @param epoch_list data array.
 #' @param lag lag.
@@ -9,7 +9,7 @@
 #'
 #' @export
 
-jump_imp <- function(epoch_list, lag=5, percentile=95, except_joint=NULL){
+jmp_imp <- function(epoch_list, lag=5, percentile=95, except_joint=NULL){
     for(i in seq_along(epoch_list)){
         for(j in 1:(dim(epoch_list[[1]])[2])){
             if(is.element(dimnames(epoch_list[[1]])[[2]][j], except_joint)){next}            
