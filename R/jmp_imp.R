@@ -24,7 +24,7 @@ jmp_imp <- function(epoch_list, lag=5, percentile=95, except_joint=NULL){
             y_Z = abs((diff_y - mean(diff_y, na.rm=TRUE))/sd(diff_y, na.rm=TRUE))            
             id_y = c(1:length(y_Z))[abs(y_Z) > abs(qnorm((100 - percentile)/200))]
             
-            epoch_list[union(id_x,id_y) , j, 1:2] = NA
+            epoch_list[[i]][union(id_x,id_y) , j, 1:2] = NA
         }
     }
     return(epoch_list)
