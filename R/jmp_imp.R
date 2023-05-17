@@ -17,12 +17,13 @@ jmp_imp <- function(epoch_list, lag=5, percentile=95, except_joint=NULL){
             Y = epoch_list[[i]][, j, 2]
 
             diff_x = diff(X, lag=lag, na.rm=TRUE)        
-            sd_diffx = sd(diff_x, na.rm=TRUE)
-            id_x = c(1:length(X))[c(rep(0,lag),abs(diff_x)) >= sd_diffx*sd_ratio]
+            x_Z = abs((diff_x - mean(diff_x, na.rm=TRUE))/sd(diff_x, na.rm=TRUE))
+            id_x = c(1:length(x_Z))[abs(x_Z) > abs(qnorm((100 - percentile)/200))]            
+
             diff_y = diff(Y, lag=lag, na.rm=TRUE)
-            sd_diffy = sd(diff_y, na.rm=TRUE)
-            id_y = c(1:length(Y))[c(rep(0,lag),abs(diff_y)) >= sd_diffy*sd_ratio]
-                
+            y_Z = abs((diff_y - mean(diff_y, na.rm=TRUE))/sd(diff_y, na.rm=TRUE))            
+            id_y = c(1:length(y_Z))[abs(y_Z) > abs(qnorm((100 - percentile)/200))]
+            
             X[union(id_x,id_y)] = NA
             Y[union(id_x,id_y)] = NA
 

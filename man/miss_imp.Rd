@@ -9,9 +9,9 @@ miss_imp(data_array, thr = 0, lag = 5, percentile = 95)
 \arguments{
 \item{data_array}{data array.}
 
-\item{thr}{threshold.}
+\item{thr}{the threshold parameter about confident score.}
 
-\item{lag}{lag.}
+\item{lag}{lag parameter (used in diff()).}
 
 \item{percentile}{percentile.}
 }
