@@ -24,17 +24,7 @@ jmp_imp <- function(epoch_list, lag=5, percentile=95, except_joint=NULL){
             y_Z = abs((diff_y - mean(diff_y, na.rm=TRUE))/sd(diff_y, na.rm=TRUE))            
             id_y = c(1:length(y_Z))[abs(y_Z) > abs(qnorm((100 - percentile)/200))]
             
-            X[union(id_x,id_y)] = NA
-            Y[union(id_x,id_y)] = NA
-
-            if(sum(is.na(X)) <= length(X)*0.8){
-                new_X = zoo::na.approx(X, na.rm=FALSE)
-            }
-            if(sum(is.na(Y)) <= length(Y)*0.8){
-                new_Y = zoo::na.approx(Y, na.rm=FALSE)
-            }
-            epoch_list[[i]][, j, "X"] = new_X
-            epoch_list[[i]][, j, "Y"] = new_Y
+            epoch_list[union(id_x,id_y) , j, 1:2] = NA
         }
     }
     return(epoch_list)
