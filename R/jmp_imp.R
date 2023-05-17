@@ -39,3 +39,4 @@ jmp_imp <- function(epoch_list, lag=5, percentile=95, except_joint=NULL){
     }
     return(epoch_list)
 }
+
