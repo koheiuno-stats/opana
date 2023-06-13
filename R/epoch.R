@@ -20,8 +20,10 @@ epoch <- function(data_array, maxtime=100, LR = "left", epoch_manual=NULL){
         }
         event = peak_det(signal, w=5, span=0.02)
         epoch_list = list()
+        epoch_manual = list()
         for(j in 1:(length(event)-1)){
-            epoch_list[[j]] = data_array[event[j]:event[j+1], ,]
+            epoch_manual[[j]] = (event[j]):(event[j+1]-1)            
+            epoch_list[[j]] = data_array[epoch_manual[[j]], ,]
         }
         normalize_list = list()
         ns = unlist(lapply(epoch_list, FUN=function(x){dim(x)[1]}))
@@ -57,7 +59,7 @@ epoch <- function(data_array, maxtime=100, LR = "left", epoch_manual=NULL){
             normalize_list[[j]] = Array
         }
     }    
-    list(epoch=epoch_list, normalize=normalize_list, epoch_list=epoch_list)
+    list(epoch=epoch_list, normalize=normalize_list, epoch_manual=epoch_manual)
 }
 
 peak_det <- function(y, w=1,span=0.05){
