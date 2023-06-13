@@ -9,6 +9,7 @@
 
 epoch <- function(data_array, maxtime=100, LR = "left", epoch_manual=NULL){
     joint_label = dimnames(data_array)[[2]]
+    
     if(is.null(epoch_manual)){
 
         if(LR == "left"){
@@ -55,8 +56,8 @@ epoch <- function(data_array, maxtime=100, LR = "left", epoch_manual=NULL){
             dimnames(Array) = list(time=0:maxtime,joints = joint_label,XYs = c("X", "Y", "score"))
             normalize_list[[j]] = Array
         }
-    }
-    list(epoch=epoch_list, normalize=normalize_list)    
+    }    
+    list(epoch=epoch_list, normalize=normalize_list, epoch_list=epoch_list)
 }
 
 peak_det <- function(y, w=1,span=0.05){

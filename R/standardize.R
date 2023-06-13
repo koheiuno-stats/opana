@@ -55,8 +55,8 @@ standardize <- function(data_array, centering=TRUE, scaling=TRUE, anchor="Neck")
 
     ## neck standardization
     if(anchor=="Fix"){
-        X = data_array[i, "Neck", "X"]
-        Y = data_array[i, "Neck", "Y"]
+        X = data_array[1, "Neck", "X"]
+        Y = data_array[1, "Neck", "Y"]
         
         for(i in 1:(dim(data_array)[1])){        
             ## centering
