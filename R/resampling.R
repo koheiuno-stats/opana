@@ -4,25 +4,22 @@
 #'
 #' @param Array array.
 #' @param to arbitrary length
+#' @param original original length
 #'
 #' @export
-#'
-#'
 
 resampling <- function(Array, original=NULL, to=NULL){
-
-    re = floor((dim(Array)[1])*(to/original))
-    
+    re = floor((dim(Array)[1])*(to/original))    
     DIM = dim(Array)
     reArray = array(0,dim=c(re, DIM[2], DIM[3]))
-
+    
     for(j in 1:DIM[2]){
-        for(h in 1:DIM[3]){
+        for(h in 1:(DIM[3]-1)){
             if(sum(is.na(Array[ , j, h])) > DIM[1]*0.9 ){
                 reArray[ , j, h] = NA
             }else{
                 ##reArray[ , j, h] = approx(x=1:DIM[1], y=Array[ , j, h], n=re)$y
-                reArray[ , j, h] = zoo::na.spline(y=Array[ , j, h], na.rm=FALSE)
+                reArray[ , j, h] = zoo::na.spline(Array[ , j, h], na.rm=FALSE)
             }
         }
     }
