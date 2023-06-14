@@ -27,9 +27,9 @@ anno_det <- function(epoch_list, original_list, percentile = 95){
         }
         original_j = numeric(0)        
         for(i in seq_along(new_list)){
-            z1 = zoo::na.approx(new_list[[i]][, j, 1], na.rm=FALSE)
+            z1 = zoo::na.spline(new_list[[i]][, j, 1], na.rm=FALSE)
             new_list[[i]][ ,j, 1] = z1            
-            z2 = zoo::na.approx(new_list[[i]][, j, 2], na.rm=FALSE)
+            z2 = zoo::na.spline(new_list[[i]][, j, 2], na.rm=FALSE)
             new_list[[i]][ ,j, 2] = z2            
             
             wc_x_j = epoch_list[[i]][ , j, 1] - X
@@ -44,8 +44,8 @@ anno_det <- function(epoch_list, original_list, percentile = 95){
             original_j = rbind(original_j, original_list[[i]][, j, 1:2])
         }
         
-        z1 = zoo::na.approx(original_j[,1], na.rm=FALSE)
-        z2 = zoo::na.approx(original_j[,2], na.rm=FALSE)        
+        z1 = zoo::na.spline(original_j[,1], na.rm=FALSE)
+        z2 = zoo::na.spline(original_j[,2], na.rm=FALSE)        
 
         for(i in seq_along(new_list)){
             original_list[[i]][ , j, 1] = z1[((i-1)*DIM[1]+1):(i*DIM[1])]
