@@ -10,6 +10,7 @@
 
 make_array <- function(filespath = NULL, thr = 0){
     Lists = list.files(filespath, full.names = TRUE)
+    Lists = Lists[stringr::str_detect(Lists, pattern=".json")]
     id_check = rep(0, length(Lists))
     for(i in seq_along(Lists)){
         id_check[i] = length(jsonlite::fromJSON(Lists[i])[[2]][["pose_keypoints_2d"]])
