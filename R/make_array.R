@@ -13,7 +13,7 @@ make_array <- function(filespath = NULL, thr = 0){
     Lists = Lists[stringr::str_detect(Lists, pattern="keypoints")]
     id_check = rep(0, length(Lists))
     for(i in seq_along(Lists)){
-        id_check[i] = length(jsonlite::fromJSON(Lists[i])[[2]][["pose_keypoints_2d"]])
+        id_check[i] = length(jsonlite::fromJSON(Lists[i], warn=FALSE)[[2]][["pose_keypoints_2d"]])
     }
 
     data_array = array(0, dim=c(length(Lists), 25, 3))
