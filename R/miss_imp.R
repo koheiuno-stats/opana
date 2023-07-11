@@ -1,6 +1,6 @@
 #' @title miss_imp
 #'
-#' @description miss_imp() can impute missing data. 
+#' @description miss_imp() can detect missing data. 
 #'
 #'
 #' @param data_array data array.
@@ -10,18 +10,16 @@
 #'
 #' @export
 
-miss_imp <- function(data_array, thr=0, lag=5, percentile=95){
+miss_imp <- function(data_array, thr=0, lag=1, percentile=95){
     data_array = NA_score(data_array, thr=thr)
     data_array = NA_diff(data_array, lag=lag, percentile)
 
     for(j in 1:(dim(data_array)[2])){
-        if(sum(is.na(data_array[,j,"X"])) > ((dim(data_array)[1])*0.8)){
-            data_array[,j,"X"] = NA            
-        }
-##        data_array[,j,"X"] = zoo::na.approx(data_array[,j,"X"], na.rm=FALSE)
-        data_array[,j,"X"] = zoo::na.spline(data_array[,j,"X"], na.rm=FALSE)        
-        if(sum(is.na(data_array[,j,"Y"])) > ((dim(data_array)[1])*0.8)){
-            data_array[,j,"Y"] = NA            
+        id_x = sum(is.na(data_array[,j,"X"])) > ((dim(data_array)[1])*0.8)
+        id_y = sum(is.na(data_array[,j,"Y"])) > ((dim(data_array)[1])*0.8)
+
+        if(id_x == TRUE | id_y == TRUE){
+            data_array[, j, 1:2] = NA
         }
     }
     return(data_array)
@@ -35,17 +33,17 @@ NA_score <- function(data_array, thr=0){
     return(data_array)
 }
 
-NA_diff <- function(data_array, lag=5, percentile= 95){
+NA_diff <- function(data_array, lag=1, percentile= 95){
     for(j in 1:(dim(data_array)[2])){
         x_Diff = abs(diff(data_array[,j,1], lag=lag, na.rm = TRUE))
         x_Z = (x_Diff - mean(x_Diff, na.rm = TRUE))/sd(x_Diff, na.rm = TRUE)
-        x_Diff[is.na(x_Z)] = 0
-        data_array[(abs(c(rep(0,lag), x_Z)) > abs(qnorm((100-percentile)/200))), j, 1] = NA
+        id_x = c(1:length(x_Z))[abs(x_Z) > abs(qnorm((100 - percentile)/200))]                    
 
         y_Diff = abs(diff(data_array[,j,2], lag=lag, na.rm = TRUE))
         y_Z = (y_Diff - mean(y_Diff, na.rm = TRUE))/sd(y_Diff, na.rm = TRUE)
-        y_Diff[is.na(y_Z)] = 0
-        data_array[(abs(c(rep(0,lag), y_Z)) > abs(qnorm((100-percentile)/200))), j, 2] = NA
+        id_y = c(1:length(y_Z))[abs(y_Z) > abs(qnorm((100 - percentile)/200))]
+
+        data_array[union(id_x, id_y), j, 1:2] = NA
     }
     return(data_array)
 }
