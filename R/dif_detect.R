@@ -44,6 +44,8 @@ anom_det <- function(vec, width=15, scaling=50){
         dist[dist == 0] = Inf
         dmin = which.min(dist)
 
+        if(length(dmin) == 0){dmin=1}
+        
         if(dmin != 1){
             flag[(i+1):(i+dmin-1)] = 1
         }
