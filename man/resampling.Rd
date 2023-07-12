@@ -9,6 +9,8 @@ resampling(Array, original = NULL, to = NULL)
 \arguments{
 \item{Array}{array.}
 
+\item{original}{original length}
+
 \item{to}{arbitrary length}
 }
 \description{

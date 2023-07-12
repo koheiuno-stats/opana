@@ -5,8 +5,8 @@
 \title{trajectory_color}
 \usage{
 trajectory_color(
-  coord_data,
-  emg_data,
+  coord_epoch,
+  emg_epoch,
   muscle_name = NULL,
   joint_name = NULL,
   title_name = NULL

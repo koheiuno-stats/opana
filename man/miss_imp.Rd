@@ -4,17 +4,13 @@
 \alias{miss_imp}
 \title{miss_imp}
 \usage{
-miss_imp(data_array, thr = 0, lag = 5, percentile = 95)
+miss_imp(data_array, thr = 0)
 }
 \arguments{
 \item{data_array}{data array.}
 
 \item{thr}{the threshold parameter about confident score.}
-
-\item{lag}{lag parameter (used in diff()).}
-
-\item{percentile}{percentile.}
 }
 \description{
-miss_imp() can impute missing data.
+miss_imp() can detect missing data.
 }
