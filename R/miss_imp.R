@@ -55,16 +55,18 @@ NA_diff2 <- function(data_array, lag=1, percentile= 95){
         vec_na = vec[!idx]
         x_Diff = abs(diff(vec_na, lag=lag, na.rm=TRUE))
         x_Z = (x_Diff - mean(x_Diff, na.rm = TRUE))/sd(x_Diff, na.rm = TRUE)
+        vec2 = rep(NA, length(vec))
         vec2[!idx] = c(rep(0,lag),x_Z)
-        id_x = [abs(vec2) > abs(qnorm((100-percentile)/200))]        
+        id_x = c(1:length(vec2))[abs(vec2) > abs(qnorm((100-percentile)/200))]        
 
         vec = data_array[ ,j, 2]
         idx = is.na(vec)
         vec_na = vec[!idx]
         y_Diff = abs(diff(vec_na, lag=lag, na.rm=TRUE))
-        y_Z = (y_Diff - mean(y_Diff, na.rm = TRUE))/sd(y_Diff, na.rm = TRUE)        
+        y_Z = (y_Diff - mean(y_Diff, na.rm = TRUE))/sd(y_Diff, na.rm = TRUE)
+        vec2 = rep(NA, length(vec))        
         vec2[!idx] = c(rep(0,lag),y_Z)
-        id_y = [abs(vec2) > abs(qnorm((100-percentile)/200))]        
+        id_y = c(1:length(vec2))[abs(vec2) > abs(qnorm((100-percentile)/200))]        
 
         data_array[union(id_x+1, id_y+1), j, 1:2] = NA
     }
